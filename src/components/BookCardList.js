@@ -1,8 +1,10 @@
 import React from "react";
+import axios from "axios";
 import BookCard from "./BookCard/BookCard";
 import { useEffect, useState } from "react";
+import BootstrapCard from "./BootstrapCard";
 
-export const BookCardList = () => {
+export const BookCardList = ({ token }) => {
   const [allBooks, setAllUBooks] = useState([]);
   const [books, setBooks] = useState([]);
 
@@ -10,7 +12,7 @@ export const BookCardList = () => {
     (async () => {
       let bookData;
       try {
-        const response = await fetch("http://localhost:3001/books"); //grab from Backend!
+        const response = await fetch("http://localhost:8080/books"); //grab from Backend!
         bookData = await response.json();
       } catch (error) {
         console.log(error);
@@ -32,7 +34,7 @@ export const BookCardList = () => {
           /> */}
         <div className="cards-container">
           {books.map((book, index) => (
-            <BookCard key={index} bookData={book} />
+            <BootstrapCard key={index} bookData={book} />
           ))}
         </div>
       </div>
