@@ -2,6 +2,8 @@ import React from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { GoogleAuthProvider } from "firebase/auth";
 import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 // Configure FirebaseUI.
 const uiConfig = {
@@ -10,10 +12,10 @@ const uiConfig = {
   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
   signInSuccessUrl: "/signedIn",
   // We will display Google and Facebook as auth providers.
-  signInOptions: [GoogleAuthProvider.PROVIDER_ID],
+  signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
 };
 
-const SignIn = () => {
+const SignInScreen = () => {
   return (
     <div>
       <h1>My App</h1>
@@ -23,4 +25,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInScreen;
