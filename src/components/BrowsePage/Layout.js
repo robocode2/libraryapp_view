@@ -15,8 +15,6 @@ const Layout = () => {
       <Row>
         <Col xs={2}>
           <button onClick={() => app.auth().signOut()}>Sign out</button>
-          This is gutterThis is gutterThis is gutterThis is gutterThis is
-          gutterThis is gutterThis is gutterThis is gutter6
         </Col>
         <Col xs={8}>
           <DropdownList></DropdownList>
@@ -25,10 +23,7 @@ const Layout = () => {
           <ListForm></ListForm>
           <BooksListBrowse></BooksListBrowse>
         </Col>
-        <Col xs={2}>
-          This is gutterThis is gutterThis is gutterThis is gutterThis is
-          gutterThis is gutterThis is gutterThis is gutter
-        </Col>
+        <Col xs={2}></Col>
       </Row>
     </Container>
   );
