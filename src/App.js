@@ -1,23 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-//import Home from "./Home";
-import { AuthProvider } from "./AuthContext";
-//import BookCardList from "./components/BookCardList";
-import SignInScreen from "./SignInScreen";
-//import Home from "./Home";
-import UserProfile from "./components/Profile/UserProfile";
-//import PrivateRoute from "./PrivateRoute";
 import { useEffect, useState } from "react";
-import firebase from "firebase/app";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SignInScreen from "./components/SignInOut/SignInScreen";
+import UserProfile from "./components/Profile/UserProfile";
+import Layout from "./components/BrowsePage/Layout";
+import Dashboard from "./components/Dashboard/Dashboard";
+import SignInLogOut from "./components/SignInOut/SignInLogOut";
+import BooksListBrowse from "./components/BrowsePage/BooksListBrowse";
 import "firebase/auth";
 import app from "./firebase";
-/* import "bootstrap/dist/css/bootstrap.min.css"; */
-import PrivateRoute from "./PrivateRoute";
-
-import Layout from "./components/BrowsePage/Layout";
-import Dashboard from ".//Dashboard";
-import SignInLogOut from "./SignInLogOut";
-import BooksListBrowse from "./components/BrowsePage/BooksListBrowse";
 
 const App = () => {
   const [token, setToken] = useState("");

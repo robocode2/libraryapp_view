@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 //import H1 from '../Typography/H1';{auth.currentUser.email}
 //import Text from '../Typography/Text';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../../AuthContext';
 
 const Dashboard = () => {
   const auth = useAuth();
