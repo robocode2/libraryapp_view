@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import BookCardList from "./BookCardList";
-import app from "../firebase";
+import app from "../../firebase";
 
 const UserProfile = ({ token }) => {
   //avatar or username on the left side

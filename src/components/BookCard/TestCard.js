@@ -19,8 +19,6 @@ export const TestCard = ({ bookData }) => {
   </style>;
   const bookCover = `https://covers.openlibrary.org/b/isbn/${bookData.isbn}-L.jpg`;
 
-  async function addToList() {}
-
   return (
     <Card style={{ width: "11rem" }}>
       <Card.Img className="card-imgsize" variant="top" src={bookCover} />

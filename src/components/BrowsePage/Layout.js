@@ -7,12 +7,14 @@ import Col from "react-bootstrap/Col";
 import ListForm from "../createListForm/ListForm.js";
 import BookForm from "../createBookForm/BookForm";
 import DropdownList from "../AddButton/DropdownList.js";
+import app from "../../firebase";
 
 const Layout = () => {
   return (
     <Container>
       <Row>
         <Col xs={2}>
+          <button onClick={() => app.auth().signOut()}>Sign out</button>
           This is gutterThis is gutterThis is gutterThis is gutterThis is
           gutterThis is gutterThis is gutterThis is gutter6
         </Col>
