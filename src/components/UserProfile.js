@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import app from "../../firebase";
+import BookCardList from "./BookCardList";
 
 const UserProfile = ({ token }) => {
   //avatar or username on the left side
@@ -20,13 +20,12 @@ const UserProfile = ({ token }) => {
         Authorization: "Bearer " + token,
       },
     });
-    console.log(`'hsafasgasgasgasgeqei' + ${res.data}`);
+    console.log(res.data);
   };
 
   return (
     <div>
       <h1>List of books</h1>
-      <button onClick={() => app.auth().signOut()}>Log out</button>
     </div>
   );
 };
