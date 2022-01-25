@@ -9,6 +9,33 @@
 
 A simple “book list” or “bookshelf” web app where a user can login/sign up using Firebase as an authentication service and be able to create “lists” such as favorites or plan-to-read list, etc.. And add/remove books to these lists accordingly.
 
+## Project Development Environment Set-up
+
+- To run the project locally :
+
+A firebase project is needed
+on the frontend :
+
+on the backend : Firebase Admin SDK
+Add to .env file
+
+2 instances of PostgreSQL
+Add to .env file
+
+Changing data source from heroku to localhost
+
+How to run project locally after providing above :
+
+- Running migrations
+- to start server : npm start
+
+- to run React-App : npm start
+- to build React-App : npm run build
+
+How to run tests :
+
+- npm test
+
 ## Project Stack
 
 - Backend : PostgreSQL, Sequelize (ORM), NodeJS, Express, Firebase SDK
