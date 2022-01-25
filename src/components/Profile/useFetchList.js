@@ -21,61 +21,29 @@ function useFetchlist({ list_ID }) {
     const token = user && (await user.getIdToken());
     console.log("we are hereeeeeeeeeee" + list_ID);
     try {
-      const entries = await axios.get(
+      /* const entries = await axios.get(
         "http://localhost:8080/entries/" + list_ID,
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
-      );
+      ); */
 
-      /* const entries = await axios.get("http://localhost:8080/entries/1", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }); */
-      console.log("did i do rightsfsfsfsfsfasf", entries);
-      return entries;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  /* const entries = await axios.get(
-      `https://library-app-code.herokuapp.com/entries/6}`,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    ); */
-
-  /*  await setList(entries.data); */
-
-  /* 
-  const sendQuery = useCallback(async () => {
-    try {
-      await setLoading(true);
-      await setError(false);
-      const token = user && (await user.getIdToken());
-      //const res = await axios.get("http://localhost:8080/books");
-
-      console.log(list_ID);
-      const res = await axios.get(
-        `https://library-app-code.herokuapp.com/entries/${list_ID}`,
+      const entries = await axios.get(
+        "https://library-app-code.herokuapp.com/entries/" + list_ID,
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
       );
-      console.log(res.data);
-      await setList(res.data);
-      setLoading(false);
-    } catch (err) {
-      setError(err);
+      console.log("did i do rightsfsfsfsfsfasf", entries);
+      return entries;
+    } catch (error) {
+      console.log(error);
     }
-  }, list_ID); */
+  }
 
   useEffect(() => {
     (async () => {

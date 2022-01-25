@@ -46,7 +46,11 @@ function useFetchbooks({ list_ID }) {
     let response = [];
     for (var i = 0; i < bookIds.length; i++) {
       console.log("book number" + bookIds[i]);
-      const res = await axios.get("http://localhost:8080/books/" + bookIds[i]);
+      /*       const res = await axios.get("http://localhost:8080/books/" + bookIds[i]);
+       */
+      const res = await axios.get(
+        "https://library-app-code.herokuapp.com/book/" + bookIds[i]
+      );
 
       console.log(res);
       response.push(res.data);

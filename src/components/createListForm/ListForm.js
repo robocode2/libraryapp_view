@@ -19,6 +19,23 @@ const ListForm = () => {
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
 
+    /* axios
+      .post(
+        "http://localhost:8080/lists/create",
+        {
+          name: values.listName,
+          description: values.description,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      });
+ */
     axios
       .post(
         "https://library-app-code.herokuapp.com/lists/create",

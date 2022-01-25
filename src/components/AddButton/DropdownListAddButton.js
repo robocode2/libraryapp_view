@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useEffect, useState, useContext } from "react";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
+import { AuthContext } from "../../AuthContext";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
@@ -10,12 +13,11 @@ import "firebase/compat/auth";
 function DropdownListAddButton({ book_ID }) {
   const [userlists, setUserlists] = useState([]);
   const [value, setValue] = useState("");
+  const { currentUser, pending, logout } = useContext(AuthContext);
 
   async function postEntry(list_ID) {
-    const auth = firebase.auth();
-    const user = auth.currentUser;
-    const token = user && (await user.getIdToken());
-    /* axios
+    const token = currentUser && (await currentUser.getIdToken());
+    axios
       .post(
         `https://library-app-code.herokuapp.com/entries/create`,
         {
@@ -30,9 +32,9 @@ function DropdownListAddButton({ book_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      }); */
+      });
 
-    axios
+    /* axios
       .post(
         `http://localhost:8080/entries/create`,
         {
@@ -47,7 +49,7 @@ function DropdownListAddButton({ book_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      });
+      }); */
   }
 
   const handleSelect = (e) => {
@@ -62,20 +64,20 @@ function DropdownListAddButton({ book_ID }) {
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
 
-    const lists = await axios.get("http://localhost:8080/lists", {
+    /* const lists = await axios.get("http://localhost:8080/lists", {
       headers: {
         Authorization: "Bearer " + token,
       },
-    });
+    }); */
 
-    /* const lists = await axios.get(
+    const lists = await axios.get(
       "https://library-app-code.herokuapp.com/lists",
       {
         headers: {
           Authorization: "Bearer " + token,
         },
       }
-    ); */
+    );
     console.log("did i do right", lists);
     return lists;
   }
@@ -89,12 +91,11 @@ function DropdownListAddButton({ book_ID }) {
         console.log("bring me to me life" + user_lists.data);
         console.log(user_lists.data);
         console.log(user_lists);
+        setUserlists(user_lists.data);
       } catch (error) {
         console.log(error);
-        /*         user_lists = [];
-         */
+        user_lists = [];
       }
-      setUserlists(user_lists.data);
     })();
   }, []);
 

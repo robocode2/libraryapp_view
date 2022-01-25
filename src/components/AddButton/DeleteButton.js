@@ -11,7 +11,7 @@ function DeleteButton({ book_ID, list_ID }) {
     const auth = firebase.auth();
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
-    /* axios
+    axios
       .post(
         `https://library-app-code.herokuapp.com/entries/delete`,
         {
@@ -26,9 +26,8 @@ function DeleteButton({ book_ID, list_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      }); */
-    console.log("this is listID" + list_ID);
-    console.log("this is bookId" + book_ID);
+      });
+    /* 
     axios
       .post(
         `http://localhost:8080/entries/delete`,
@@ -44,30 +43,12 @@ function DeleteButton({ book_ID, list_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      });
+      }); */
   }
 
   const handleClick = () => {
     deleteEntry(book_ID, list_ID);
   };
-
-  /* useEffect(() => {
-    (async () => {
-      console.log("2");
-      let user_lists;
-      try {
-        user_lists = await getUserlists(); //grab from Backend!
-        console.log("bring me to me life" + user_lists.data);
-        console.log(user_lists.data);
-        console.log(user_lists);
-      } catch (error) {
-        console.log(error);
-        //         user_lists = [];
-         
-      }
-      setUserlists(user_lists.data);
-    })();
-  }, []); */
 
   return (
     <div className="button">

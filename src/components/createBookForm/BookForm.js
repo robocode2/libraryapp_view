@@ -19,6 +19,23 @@ const BookForm = ({ token }) => {
     const auth = firebase.auth();
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
+    /* axios
+      .post(
+        "http://localhost:8080/book/create",
+        {
+          title: values.title,
+          isbn: values.isbn,
+          description: values.description,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      }); */
 
     axios
       .post(
@@ -27,12 +44,12 @@ const BookForm = ({ token }) => {
           title: values.title,
           isbn: values.isbn,
           description: values.description,
-        }
-        /* {
+        },
+        {
           headers: {
             Authorization: "Bearer " + token,
           },
-        } */
+        }
       )
       .then((res) => {
         console.log(res.data);
@@ -72,23 +89,6 @@ const BookForm = ({ token }) => {
     setSubmitted(true);
 
     postToAPI();
-    /* axios
-      .post(
-        "http://localhost:8080/book/create",
-        {
-          title: values.title,
-          isbn: values.isbn,
-          description: values.description,
-        }
-         {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      }); */
   };
 
   return (
