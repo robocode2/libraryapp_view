@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
-import DropdownList from "../AddButton/DropdownList";
+import DropdownListAddButton from "../AddButton/DropdownListAddButton";
 export const TestCard = ({ bookData }) => {
   <style type="text/css">
     {`
@@ -29,7 +29,7 @@ export const TestCard = ({ bookData }) => {
           Some quick example text to build on the card title and make up the
           bulk of the */}
         </Card.Text>
-        <DropdownList book_ID={bookData.id}></DropdownList>
+        <DropdownListAddButton book_ID={bookData.id}></DropdownListAddButton>
         {/*  <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
