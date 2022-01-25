@@ -5,22 +5,23 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import app from "../../firebase";
-import ListContainerwithDropdown from "./ListContainerwithDropdown";
+import { Link } from "react-router-dom";
 
 const UserPage = () => {
   return (
     <Container>
       <Row>
-        <Col xs={2}>
-          My Profile
+        <Col xs={3}>
           <button onClick={() => app.auth().signOut()}>Sign out</button>
-          {/*  <ListsContainer></ListsContainer> */}
+
           <ListForm></ListForm>
         </Col>
-        <Col xs={10}>
-          <ListContainerwithDropdown></ListContainerwithDropdown>
+        <Col xs={6}>
+          <ListsContainer></ListsContainer>
         </Col>
-        {/* <Col xs={2}></Col> */}
+        <Col xs={3}>
+          <Link to="/browse">Browse library</Link>
+        </Col>
       </Row>
     </Container>
   );

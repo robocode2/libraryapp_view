@@ -4,9 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ListForm from "../createListForm/ListForm.js";
-import BookForm from "../createBookForm/BookForm";
-import DropdownList from "../AddButton/DropdownList.js";
+import { Link } from "react-router-dom";
 import app from "../../firebase";
 
 const Layout = () => {
@@ -17,13 +15,11 @@ const Layout = () => {
           <button onClick={() => app.auth().signOut()}>Sign out</button>
         </Col>
         <Col xs={8}>
-          <DropdownList></DropdownList>
-          <BookForm></BookForm>
-
-          <ListForm></ListForm>
           <BooksListBrowse></BooksListBrowse>
         </Col>
-        <Col xs={2}></Col>
+        <Col xs={2}>
+          <Link to="/profile">My Profile</Link>
+        </Col>
       </Row>
     </Container>
   );
