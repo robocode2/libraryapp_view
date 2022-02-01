@@ -17,7 +17,7 @@ function DropdownListAddButton({ book_ID }) {
 
   async function postEntry(list_ID) {
     const token = currentUser && (await currentUser.getIdToken());
-    axios
+    /* axios
       .post(
         `https://library-app-code.herokuapp.com/entries/create`,
         {
@@ -32,9 +32,9 @@ function DropdownListAddButton({ book_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      });
+      }); */
 
-    /* axios
+    axios
       .post(
         `http://localhost:8080/entries/create`,
         {
@@ -49,7 +49,7 @@ function DropdownListAddButton({ book_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      }); */
+      });
   }
 
   const handleSelect = (e) => {
@@ -59,56 +59,40 @@ function DropdownListAddButton({ book_ID }) {
   };
 
   async function getUserlists() {
-    console.log("3");
+    //const token = currentUser && (await currentUser.getIdToken());
     const auth = firebase.auth();
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
 
-    /* const lists = await axios.get("http://localhost:8080/lists", {
+    const lists = await axios.get("http://localhost:8080/lists", {
       headers: {
         Authorization: "Bearer " + token,
       },
-    }); */
+    });
 
-    const lists = await axios.get(
+    /*  const lists = await axios.get(
       "https://library-app-code.herokuapp.com/lists",
       {
         headers: {
           Authorization: "Bearer " + token,
         },
       }
-    );
-    console.log("did i do right", lists);
+    ); */
     return lists;
   }
 
   useEffect(() => {
     (async () => {
-      console.log("2");
       let user_lists;
       try {
         user_lists = await getUserlists(); //grab from Backend!
-        console.log("bring me to me life" + user_lists.data);
-        console.log(user_lists.data);
-        console.log(user_lists);
         setUserlists(user_lists.data);
       } catch (error) {
         console.log(error);
-        user_lists = [];
+        setUserlists([]);
       }
     })();
   }, []);
-
-  function renderListButtons() {
-    console.log("1");
-    console.log(userlists);
-
-    //userlists.map((list, index) => console.log(list));
-
-    userlists.map((list, index) => (
-      <Dropdown.Item eventKey={list.id}>{list.name}</Dropdown.Item>
-    ));
-  }
 
   return (
     <div className="button">

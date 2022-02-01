@@ -11,7 +11,7 @@ function DeleteButton({ book_ID, list_ID }) {
     const auth = firebase.auth();
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
-    axios
+    /* axios
       .post(
         `https://library-app-code.herokuapp.com/entries/delete`,
         {
@@ -26,8 +26,8 @@ function DeleteButton({ book_ID, list_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      });
-    /* 
+      }); */
+
     axios
       .post(
         `http://localhost:8080/entries/delete`,
@@ -43,7 +43,7 @@ function DeleteButton({ book_ID, list_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      }); */
+      });
   }
 
   const handleClick = () => {

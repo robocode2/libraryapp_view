@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import axios from "axios";
 import Button from "react-bootstrap/Button";
@@ -8,36 +8,29 @@ import Form from "react-bootstrap/Form";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
-const BookForm = ({ token }) => {
+const BookForm = ({ submit }) => {
   const [values, setValues] = useState({
     title: "",
     isbn: "",
     description: "",
   });
 
+  //const { currentUser, pending, logout } = useContext(AuthContext);
+
   async function postToAPI() {
-    const auth = firebase.auth();
-    const user = auth.currentUser;
-    const token = user && (await user.getIdToken());
-    /* axios
-      .post(
-        "http://localhost:8080/book/create",
-        {
-          title: values.title,
-          isbn: values.isbn,
-          description: values.description,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      }); */
+    //const token = currentUser && (await currentUser.getIdToken());
 
     axios
+      .post("http://localhost:8080/books/create", {
+        title: values.title,
+        isbn: values.isbn,
+        description: values.description,
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+
+    /* axios
       .post(
         "https://library-app-code.herokuapp.com/book/create",
         {
@@ -53,41 +46,64 @@ const BookForm = ({ token }) => {
       )
       .then((res) => {
         console.log(res.data);
-      });
+      }); */
   }
 
   const [submitted, setSubmitted] = useState(false);
 
-  const [jwttoken, setToken] = useState(token);
-
   const handleTitleInputChange = (event) => {
-    event.persist();
+    const { title, value } = event.target;
+    setValues((values) => ({
+      ...values,
+      title: value,
+    }));
+
+    /*  event.persist();
     setValues((values) => ({
       ...values,
       title: event.target.value,
-    }));
+    })); */
   };
 
   const handleISBNInputChange = (event) => {
+    const { isbn, value } = event.target;
+    setValues((values) => ({
+      ...values,
+      isbn: value,
+    }));
+
+    /* event.persist();
+    setValues((values) => ({
+      ...values,
+      isbn: event.target.value,
+    })); */
+  };
+  /* 
     event.persist();
     setValues((values) => ({
       ...values,
       isbn: event.target.value,
     }));
-  };
+  }; */
 
   const handleDescriptionInputChange = (event) => {
-    event.persist();
+    const { description, value } = event.target;
+    setValues((values) => ({
+      ...values,
+      description: value,
+    }));
+
+    /*   event.persist();
     setValues((values) => ({
       ...values,
       description: event.target.value,
-    }));
+    })); */
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-
+    submit();
     postToAPI();
   };
 
@@ -97,6 +113,7 @@ const BookForm = ({ token }) => {
         <Form.Label>title</Form.Label>
         <Form.Control
           type="title"
+          data-testid="titleID"
           placeholder="Enter title"
           value={values.title}
           onChange={handleTitleInputChange}

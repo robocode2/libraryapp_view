@@ -17,16 +17,16 @@ function useFetch(query, page) {
       await setLoading(true);
       await setError(false);
       const token = user && (await user.getIdToken());
-      //const res = await axios.get("http://localhost:8080/books");
+      const res = await axios.get("http://localhost:8080/books");
 
-      const res = await axios.get(
+      /* const res = await axios.get(
         "https://library-app-code.herokuapp.com/books",
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
-      );
+      ); */
       await setList((prev) => [...prev, ...res.data]);
       setLoading(false);
     } catch (err) {
