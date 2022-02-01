@@ -1,13 +1,12 @@
 import React from "react";
 import { useState } from "react";
-
-import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { useAuth } from "../../AuthContext";
+import axiosClient from "../../axios";
+
 const ListForm = ({ submit }) => {
   const { currentUser } = useAuth();
   //const token = currentUser.getIdToken();
@@ -21,9 +20,9 @@ const ListForm = ({ submit }) => {
     const user = auth.currentUser; */
     const token = currentUser && (await currentUser.getIdToken());
     console.log(token);
-    axios
+    axiosClient
       .post(
-        "http://localhost:8080/lists/create",
+        "/lists/create",
         {
           name: values.listName,
           description: values.description,
@@ -37,23 +36,6 @@ const ListForm = ({ submit }) => {
       .then((res) => {
         console.log(res.data);
       });
-    /* 
-    axios
-      .post(
-        "https://library-app-code.herokuapp.com/lists/create",
-        {
-          name: values.listName,
-          description: values.description,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      }); */
   }
 
   const [submitted, setSubmitted] = useState(false);
@@ -64,12 +46,6 @@ const ListForm = ({ submit }) => {
       ...values,
       listName: value,
     }));
-
-    /* event.persist();
-    setValues((values) => ({
-      ...values,
-      listName: event.target.value,
-    })); */
   };
 
   const handleDescriptionInputChange = (event) => {
@@ -78,12 +54,6 @@ const ListForm = ({ submit }) => {
       ...values,
       description: value,
     }));
-
-    /*  event.persist();
-    setValues((values) => ({
-      ...values,
-      description: event.target.value,
-    })); */
   };
 
   const handleSubmit = (e) => {
@@ -91,22 +61,6 @@ const ListForm = ({ submit }) => {
     setSubmitted(true);
     //submit();
     postToAPI();
-    /*  axios
-      .post(
-        "http://localhost:8080/lists/create",
-        {
-          name: values.listName,
-          description: values.description,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      }); */
   };
 
   return (

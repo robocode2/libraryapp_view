@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import axiosClient from "../../axios";
 
 function useFetchlist({ list_ID }) {
   const [listentries, setListentries] = useState([]);
@@ -17,23 +17,11 @@ function useFetchlist({ list_ID }) {
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
     try {
-      const entries = await axios.get(
-        "http://localhost:8080/entries/" + list_ID,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-
-      /*  const entries = await axios.get(
-        "https://library-app-code.herokuapp.com/entries/" + list_ID,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      ); */
+      const entries = await axiosClient.get("/entries/" + list_ID, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
       return entries;
     } catch (error) {
       console.log(error);

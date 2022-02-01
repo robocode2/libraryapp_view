@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import axiosClient from "../../axios";
 
 const BookForm = ({ submit }) => {
   const [values, setValues] = useState({
@@ -20,8 +21,8 @@ const BookForm = ({ submit }) => {
   async function postToAPI() {
     //const token = currentUser && (await currentUser.getIdToken());
 
-    axios
-      .post("http://localhost:8080/books/create", {
+    axiosClient
+      .post("/books/create", {
         title: values.title,
         isbn: values.isbn,
         description: values.description,
@@ -29,24 +30,6 @@ const BookForm = ({ submit }) => {
       .then((res) => {
         console.log(res.data);
       });
-
-    /* axios
-      .post(
-        "https://library-app-code.herokuapp.com/book/create",
-        {
-          title: values.title,
-          isbn: values.isbn,
-          description: values.description,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      }); */
   }
 
   const [submitted, setSubmitted] = useState(false);
@@ -57,12 +40,6 @@ const BookForm = ({ submit }) => {
       ...values,
       title: value,
     }));
-
-    /*  event.persist();
-    setValues((values) => ({
-      ...values,
-      title: event.target.value,
-    })); */
   };
 
   const handleISBNInputChange = (event) => {
@@ -71,20 +48,7 @@ const BookForm = ({ submit }) => {
       ...values,
       isbn: value,
     }));
-
-    /* event.persist();
-    setValues((values) => ({
-      ...values,
-      isbn: event.target.value,
-    })); */
   };
-  /* 
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      isbn: event.target.value,
-    }));
-  }; */
 
   const handleDescriptionInputChange = (event) => {
     const { description, value } = event.target;
@@ -92,12 +56,6 @@ const BookForm = ({ submit }) => {
       ...values,
       description: value,
     }));
-
-    /*   event.persist();
-    setValues((values) => ({
-      ...values,
-      description: event.target.value,
-    })); */
   };
 
   const handleSubmit = (e) => {
