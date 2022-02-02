@@ -17,13 +17,13 @@ function DropdownListAddButton({ book_ID }) {
   const [value, setValue] = useState("");
 
   const { currentUser } = useAuth();
-  const { userLists, pending } = useData();
+  //const { userLists, pending } = useData();
 
   async function postEntry(list_ID) {
     const token = currentUser && (await currentUser.getIdToken());
     axiosClient
       .post(
-        `http://localhost:8080/entries/create`,
+        `/entries/create`,
         {
           list_id: list_ID,
           book_id: book_ID,

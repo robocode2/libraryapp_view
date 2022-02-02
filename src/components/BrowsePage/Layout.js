@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import app from "../../firebase";
+import BookForm from "../createBookForm/BookForm";
 
 const Layout = () => {
   return (
@@ -13,6 +14,7 @@ const Layout = () => {
       <Row>
         <Col xs={2}>
           <button onClick={() => app.auth().signOut()}>Sign out</button>
+          <BookForm></BookForm>
         </Col>
         <Col xs={8}>
           <BooksListBrowse></BooksListBrowse>
