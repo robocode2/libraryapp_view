@@ -50,6 +50,11 @@
     "cypress": "^9.3.1",
     "cypress-firebase": "^2.2.1",
     "eslint-plugin-cypress": "^2.12.1",
-    "firebase-admin": "^10.0.2"
+    "firebase-admin": "^10.0.2",
+    "msw": "^0.36.8",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
