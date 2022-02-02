@@ -7,47 +7,33 @@ import axios from "axios";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import ListBrowser from "./ListBrowser";
+import axiosClient from "../../axios";
 
 function ListsContainer() {
   const [userlists, setUserlists] = useState([]);
   const [value, setValue] = useState("1");
 
   const handleSelect = (e) => {
-    console.log("changing" + e);
     setValue(e);
   };
 
   async function getUserlists() {
-    console.log("3");
     const auth = firebase.auth();
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
-
-    /*   const lists = await axios.get("http://localhost:8080/lists", {
+    const lists = await axiosClient.get("/lists", {
       headers: {
         Authorization: "Bearer " + token,
       },
-    }); */
-
-    const lists = await axios.get(
-      "https://library-app-code.herokuapp.com/lists",
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-    console.log("did i do right", lists);
+    });
     return lists;
   }
 
   useEffect(() => {
     (async () => {
-      console.log("2");
       let user_lists;
       try {
         user_lists = await getUserlists(); //grab from Backend!
-        console.log("bring me to me life" + user_lists.data);
       } catch (error) {
         console.log(error);
         /*         user_lists = [];

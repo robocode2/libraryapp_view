@@ -1,19 +1,19 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import axiosClient from "../../axios";
 
 function DeleteButton({ book_ID, list_ID }) {
   async function deleteEntry(book_ID, list_ID) {
     const auth = firebase.auth();
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
-    axios
+    axiosClient
       .post(
-        `https://library-app-code.herokuapp.com/entries/delete`,
+        `/entries/delete`,
         {
           list_id: list_ID,
           book_id: book_ID,
@@ -27,23 +27,6 @@ function DeleteButton({ book_ID, list_ID }) {
       .then((res) => {
         console.log(res.data);
       });
-    /* 
-    axios
-      .post(
-        `http://localhost:8080/entries/delete`,
-        {
-          list_id: list_ID,
-          book_id: book_ID,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      }); */
   }
 
   const handleClick = () => {

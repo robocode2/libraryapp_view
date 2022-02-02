@@ -5,36 +5,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
-import { AuthContext } from "../../AuthContext";
+import { useAuth } from "../../AuthContext";
+import { useData } from "../../DataContext";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import axiosClient from "../../axios";
 
 function DropdownListAddButton({ book_ID }) {
-  const [userlists, setUserlists] = useState([]);
+  const [user_lists, setUserlists] = useState([]);
   const [value, setValue] = useState("");
-  const { currentUser, pending, logout } = useContext(AuthContext);
+
+  const { currentUser } = useAuth();
+  const { userLists, pending } = useData();
 
   async function postEntry(list_ID) {
     const token = currentUser && (await currentUser.getIdToken());
-    axios
-      .post(
-        `https://library-app-code.herokuapp.com/entries/create`,
-        {
-          list_id: list_ID,
-          book_id: book_ID,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      });
-
-    /* axios
+    axiosClient
       .post(
         `http://localhost:8080/entries/create`,
         {
@@ -49,7 +36,7 @@ function DropdownListAddButton({ book_ID }) {
       )
       .then((res) => {
         console.log(res.data);
-      }); */
+      });
   }
 
   const handleSelect = (e) => {
@@ -59,56 +46,41 @@ function DropdownListAddButton({ book_ID }) {
   };
 
   async function getUserlists() {
-    console.log("3");
+    //const token = currentUser && (await currentUser.getIdToken());
     const auth = firebase.auth();
     const user = auth.currentUser;
     const token = user && (await user.getIdToken());
-
-    /* const lists = await axios.get("http://localhost:8080/lists", {
+    const lists = await axiosClient.get("/lists", {
       headers: {
         Authorization: "Bearer " + token,
       },
-    }); */
-
-    const lists = await axios.get(
-      "https://library-app-code.herokuapp.com/lists",
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-    console.log("did i do right", lists);
+    });
     return lists;
   }
 
+  /* useEffect(() => {
+    (async () => {
+      try {
+        setUserlists(userLists);
+      } catch (error) {
+        console.log(error);
+        setUserlists([]);
+      }
+    })();
+  }, [userLists]); */
+
   useEffect(() => {
     (async () => {
-      console.log("2");
       let user_lists;
       try {
         user_lists = await getUserlists(); //grab from Backend!
-        console.log("bring me to me life" + user_lists.data);
-        console.log(user_lists.data);
-        console.log(user_lists);
         setUserlists(user_lists.data);
       } catch (error) {
         console.log(error);
-        user_lists = [];
+        setUserlists([]);
       }
     })();
   }, []);
-
-  function renderListButtons() {
-    console.log("1");
-    console.log(userlists);
-
-    //userlists.map((list, index) => console.log(list));
-
-    userlists.map((list, index) => (
-      <Dropdown.Item eventKey={list.id}>{list.name}</Dropdown.Item>
-    ));
-  }
 
   return (
     <div className="button">
@@ -124,7 +96,7 @@ function DropdownListAddButton({ book_ID }) {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {userlists.map((list, index) => (
+          {user_lists.map((list, index) => (
             <Dropdown.Item key={index} eventKey={list.id}>
               {list.name}
             </Dropdown.Item>
