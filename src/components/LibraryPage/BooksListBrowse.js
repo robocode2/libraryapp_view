@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import useFetch from "./useFetch";
-import BookCard from "../BookCard/AddBookCard";
+import AddBookCard from "../BookCard/AddBookCard";
 
 function BooksListBrowse() {
   const [query, setQuery] = useState("");
@@ -37,7 +37,7 @@ function BooksListBrowse() {
         <div className="row row-cols-3  row-cols-md-3">
           {list.map((item, index) => (
             <div key={index} id="cardItem" className="col-xs-1">
-              <BookCard key={index} bookData={item} />
+              <AddBookCard key={index} bookData={item} />
             </div>
           ))}
         </div>

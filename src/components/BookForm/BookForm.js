@@ -59,7 +59,7 @@ const BookForm = ({ submit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    //submit();
+    submit();
     postToAPI();
   };
 

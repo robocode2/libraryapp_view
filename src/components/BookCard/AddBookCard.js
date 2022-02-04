@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import AddtoListButton from "../CustomButtons/AddtoList";
 
-export const BookCard = ({ bookData }) => {
+export const AddBookCard = ({ bookData }) => {
   <style type="text/css">
     {`
     .card-imgsize {
@@ -23,4 +23,4 @@ export const BookCard = ({ bookData }) => {
   );
 };
 
-export default BookCard;
+export default AddBookCard;
