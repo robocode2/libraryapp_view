@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import axios from "axios";
-
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
 import ListBrowser from "./ListBrowser";
 import axiosClient from "../../axios";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 function ListsContainer() {
   const [userlists, setUserlists] = useState([]);
@@ -43,16 +39,9 @@ function ListsContainer() {
     })();
   }, []);
 
-  useEffect(() => {
-    renderListBrowser(value);
-  }, [value]);
-
-  function renderListBrowser(value) {
-    <ListBrowser list_ID={value}></ListBrowser>;
-  }
-
   return (
     <div className="button">
+      <h3>List book entries</h3>
       <Dropdown
         className="d-inline mx-2"
         autoClose="outside"
@@ -61,7 +50,7 @@ function ListsContainer() {
         onSelect={handleSelect}
       >
         <Dropdown.Toggle id="dropdown-autoclose-outside">
-          Clickable Inside
+          Choose list
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -73,7 +62,6 @@ function ListsContainer() {
         </Dropdown.Menu>
       </Dropdown>
       <ListBrowser list_ID={value}></ListBrowser>;
-      {/* {renderListBrowser(value)} */}
     </div>
   );
 }

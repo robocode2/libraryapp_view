@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useContext } from "react";
-
-import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -61,48 +59,51 @@ const BookForm = ({ submit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    submit();
+    //submit();
     postToAPI();
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="title">
-        <Form.Label>title</Form.Label>
-        <Form.Control
-          type="title"
-          data-testid="titleID"
-          placeholder="Enter title"
-          value={values.title}
-          onChange={handleTitleInputChange}
-        />
-      </Form.Group>
+    <div className="BookForm">
+      <h3>Add book</h3>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="title">
+          <Form.Label>title</Form.Label>
+          <Form.Control
+            type="title"
+            data-testid="titleID"
+            placeholder="Enter title"
+            value={values.title}
+            onChange={handleTitleInputChange}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="isbn">
-        <Form.Label>ISBN</Form.Label>
-        <Form.Control
-          type="isbn"
-          placeholder="Enter isbn"
-          value={values.isbn}
-          onChange={handleISBNInputChange}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="isbn">
+          <Form.Label>ISBN</Form.Label>
+          <Form.Control
+            type="isbn"
+            placeholder="Enter isbn"
+            value={values.isbn}
+            onChange={handleISBNInputChange}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="description">
-        <Form.Label>Description</Form.Label>
-        <Form.Text className="text-muted">Describe book</Form.Text>
-        <Form.Control
-          type="description"
-          placeholder="description"
-          value={values.description}
-          onChange={handleDescriptionInputChange}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="description">
+          <Form.Label>Description</Form.Label>
+          <Form.Text className="text-muted">Describe book</Form.Text>
+          <Form.Control
+            type="description"
+            placeholder="description"
+            value={values.description}
+            onChange={handleDescriptionInputChange}
+          />
+        </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </div>
   );
 };
 

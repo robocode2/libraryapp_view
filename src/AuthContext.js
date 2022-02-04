@@ -26,8 +26,6 @@ export const AuthProvider = ({ children }) => {
     app.auth().onAuthStateChanged((user) => {
       setCurrentUser(user);
       setPending(false);
-      console.log(user);
-      console.log("ich bin der User");
     });
   }, []);
 
@@ -35,11 +33,6 @@ export const AuthProvider = ({ children }) => {
     return <>Loading...</>;
   }
 
-  const values = {
-    currentUser,
-    pending,
-    logout,
-  };
   return (
     <AuthContext.Provider value={{ currentUser, pending, logout }}>
       {!pending && children}

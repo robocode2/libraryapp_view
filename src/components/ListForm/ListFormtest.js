@@ -13,10 +13,30 @@ import "firebase/compat/auth";
 
 import { act } from "react-dom/test-utils";
 import "@testing-library/jest-dom/extend-expect";
-import ListForm from "../ListForm";
-import { AuthContext } from "../../../AuthContext";
+import ListForm from "./ListForm";
+import { AuthProvider, AuthContext } from "../../AuthContext";
 
 describe("testing form functionality", () => {
+  test("it should let me access Context", () => {
+    const currentUser = "Rabie Abbas";
+    const mockNotify = jest.fn();
+    const mockLogin = jest.fn();
+
+    const { getByText } = render(
+      <AuthContext.Provider value={{ currentUser, mockLogin }}>
+        <ListForm submit={mockNotify} />
+      </AuthContext.Provider>
+    );
+
+    const submitButton = getByText("Submit");
+    fireEvent.click(submitButton);
+
+    expect(mockNotify.mock.calls).toHaveLength(1);
+    //expect(contextCallback.mock.calls[0][0]).toEqual({
+    //  user: "John Doe"
+    //
+  });
+
   test("if list name value can be changed", () => {
     /* const contextUser = { currentUser: ' '};
 
@@ -24,6 +44,7 @@ describe("testing form functionality", () => {
  */
 
     const component = render(<ListForm />);
+
     const nameNode = screen.getByTestId("listnameid");
     fireEvent.change(nameNode, {
       target: { value: "Jest books" },
@@ -71,7 +92,5 @@ describe("testing form functionality", () => {
     expect(descriptionNode.value).toMatch("Books for testing React Apps");
   });
 });
-
-test("if user token value is recieved", () => {});
 
 afterEach(cleanup);

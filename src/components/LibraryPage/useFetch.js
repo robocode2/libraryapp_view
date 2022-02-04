@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect, useCallback } from "react";
-import axios from "axios";
-
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import axiosClient from "../../axios";

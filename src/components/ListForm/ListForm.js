@@ -64,33 +64,36 @@ const ListForm = ({ submit }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="listName">
-        <Form.Label>List name</Form.Label>
-        <Form.Control
-          type="listName"
-          placeholder="Enter list name"
-          data-testid="listnameid"
-          value={values.listName}
-          onChange={handleNameInputChange}
-        />
-      </Form.Group>
+    <div className="Listform">
+      <h3>Create List</h3>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="listName">
+          <Form.Label>List name</Form.Label>
+          <Form.Control
+            type="listName"
+            placeholder="Enter list name"
+            data-testid="listnameid"
+            value={values.listName}
+            onChange={handleNameInputChange}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="listDescription">
-        <Form.Label>Description</Form.Label>
-        <Form.Text className="text-muted">Describe list</Form.Text>
-        <Form.Control
-          type="description"
-          placeholder="description"
-          value={values.description}
-          onChange={handleDescriptionInputChange}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="listDescription">
+          <Form.Label>Description</Form.Label>
+          <Form.Text className="text-muted">Describe list</Form.Text>
+          <Form.Control
+            type="description"
+            placeholder="description"
+            value={values.description}
+            onChange={handleDescriptionInputChange}
+          />
+        </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </div>
   );
 };
 

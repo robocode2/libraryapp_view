@@ -1,18 +1,13 @@
 import React from "react";
-import { useEffect, useState, useContext } from "react";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import DropdownButton from "react-bootstrap/DropdownButton";
+import { useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import axios from "axios";
 import { useAuth } from "../../AuthContext";
-import { useData } from "../../DataContext";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import axiosClient from "../../axios";
 
-function DropdownListAddButton({ book_ID }) {
+function AddtoListButton({ book_ID }) {
   const [user_lists, setUserlists] = useState([]);
   const [value, setValue] = useState("");
 
@@ -92,7 +87,7 @@ function DropdownListAddButton({ book_ID }) {
         onSelect={handleSelect}
       >
         <Dropdown.Toggle id="dropdown-autoclose-outside">
-          Clickable Inside
+          Add to list
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
@@ -110,4 +105,4 @@ function DropdownListAddButton({ book_ID }) {
   );
 }
 
-export default DropdownListAddButton;
+export default AddtoListButton;

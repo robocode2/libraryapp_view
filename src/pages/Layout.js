@@ -1,19 +1,17 @@
 import React from "react";
-import BooksListBrowse from "./BooksListBrowse.js";
-import SearchForm from "../SearchForm/SearchForm";
+import BooksListBrowse from "../components/LibraryPage/BooksListBrowse.js";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
-import app from "../../firebase";
-import BookForm from "../createBookForm/BookForm";
+import app from "../firebase";
+import BookForm from "../components/BookForm/BookForm";
 
 const Layout = () => {
   return (
     <Container>
       <Row>
         <Col xs={2}>
-          <button onClick={() => app.auth().signOut()}>Sign out</button>
           <BookForm></BookForm>
         </Col>
         <Col xs={8}>
@@ -21,6 +19,7 @@ const Layout = () => {
         </Col>
         <Col xs={2}>
           <Link to="/profile">My Profile</Link>
+          <button onClick={() => app.auth().signOut()}>Sign out</button>
         </Col>
       </Row>
     </Container>

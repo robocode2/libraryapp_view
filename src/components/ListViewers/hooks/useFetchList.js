@@ -1,9 +1,8 @@
-import React from "react";
 import { useState, useEffect } from "react";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import axiosClient from "../../axios";
+import axiosClient from "../../../axios";
 
 function useFetchlist({ list_ID }) {
   const [listentries, setListentries] = useState([]);

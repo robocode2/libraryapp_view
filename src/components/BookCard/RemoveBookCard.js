@@ -1,10 +1,8 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import DeletefromList from "../CustomButtons/DeletefromList";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import DeleteButton from "../AddButton/DeleteButton";
-
-export const CardDeleteButton = ({ bookData, listId }) => {
+export const RemoveBookCard = ({ bookData, listId }) => {
   <style type="text/css">
     {`
     .card-imgsize {
@@ -24,11 +22,11 @@ export const CardDeleteButton = ({ bookData, listId }) => {
           Some quick example text to build on the card title and make up the
           bulk of the */}
         </Card.Text>
-        <DeleteButton book_ID={bookData.id} list_ID={listId}></DeleteButton>
+        <DeletefromList book_ID={bookData.id} list_ID={listId}></DeletefromList>
         {/*  <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
   );
 };
 
-export default CardDeleteButton;
+export default RemoveBookCard;

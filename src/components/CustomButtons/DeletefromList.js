@@ -1,12 +1,10 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import axiosClient from "../../axios";
 
-function DeleteButton({ book_ID, list_ID }) {
+function DeletefromList({ book_ID, list_ID }) {
   async function deleteEntry(book_ID, list_ID) {
     const auth = firebase.auth();
     const user = auth.currentUser;
@@ -42,4 +40,4 @@ function DeleteButton({ book_ID, list_ID }) {
   );
 }
 
-export default DeleteButton;
+export default DeletefromList;

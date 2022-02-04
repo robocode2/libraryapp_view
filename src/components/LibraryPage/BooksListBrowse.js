@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import useFetch from "./useFetch";
-import TestCard from "../BookCard/TestCard";
+import BookCard from "../BookCard/AddBookCard";
 
 function BooksListBrowse() {
   const [query, setQuery] = useState("");
@@ -31,14 +31,13 @@ function BooksListBrowse() {
 
   return (
     <div className="App">
-      <h1>Infinite Scroll</h1>
-      <h2>with IntersectionObserver</h2>
+      <h1>Library</h1>
       <input type="text" value={query} onChange={handleChange} />
       <div className="container">
         <div className="row row-cols-3  row-cols-md-3">
           {list.map((item, index) => (
             <div key={index} id="cardItem" className="col-xs-1">
-              <TestCard key={index} bookData={item} />
+              <BookCard key={index} bookData={item} />
             </div>
           ))}
         </div>

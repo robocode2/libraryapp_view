@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SignInScreen from "./components/SignInOut/SignInScreen";
-import Layout from "./components/BrowsePage/Layout";
-import UserPage from "./components/Profile/UserPage";
-import ProtectedRoutes from "./ProtectedRoutes";
+import SignInScreen from "./pages/SignIn";
+import Layout from "./pages/Layout";
+import UserPage from "./pages/UserPage";
+import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 
 const App = () => {
   return (
